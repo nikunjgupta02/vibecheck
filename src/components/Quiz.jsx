@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { quizQuestions } from "../data/content";
+import Riddle from "./Riddle";
 
 export default function Quiz({ onNext }) {
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [showRiddle, setShowRiddle] = useState(false);
 
   const q = quizQuestions[index];
   const isLast = index === quizQuestions.length - 1;
@@ -12,11 +14,22 @@ export default function Quiz({ onNext }) {
   function choose(value) {
     const nextScore = score + value;
     if (isLast) {
-      onNext({ quizScore: nextScore });
+      setScore(nextScore);
+      setShowRiddle(true);
     } else {
       setScore(nextScore);
       setIndex((i) => i + 1);
     }
+  }
+
+  function handleRiddleSolved(bonus) {
+    setShowRiddle(false);
+    onNext({ quizScore: score + bonus, riddleBonus: bonus });
+  }
+
+  function handleRiddleSkip() {
+    setShowRiddle(false);
+    onNext({ quizScore: score, riddleBonus: 0 });
   }
 
   return (
@@ -39,25 +52,37 @@ export default function Quiz({ onNext }) {
       </div>
 
       <AnimatePresence mode="wait">
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.25 }}
-          className="flex flex-col gap-3"
-        >
-          <h3 className="font-medium text-neutral-800">{q.question}</h3>
-          {q.options.map((opt) => (
-            <button
-              key={opt.label}
-              onClick={() => choose(opt.value)}
-              className="text-left rounded-2xl border border-neutral-200 px-4 py-3 text-sm text-neutral-700 hover:border-pink-300 hover:bg-pink-50 transition"
-            >
-              {opt.label}
-            </button>
-          ))}
-        </motion.div>
+        {!showRiddle ? (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.25 }}
+            className="flex flex-col gap-3"
+          >
+            <h3 className="font-medium text-neutral-800">{q.question}</h3>
+            {q.options.map((opt) => (
+              <button
+                key={opt.label}
+                onClick={() => choose(opt.value)}
+                className="text-left rounded-2xl border border-neutral-200 px-4 py-3 text-sm text-neutral-700 hover:border-pink-300 hover:bg-pink-50 transition"
+              >
+                {opt.label}
+              </button>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div
+            key="riddle"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="mt-2"
+          >
+            <Riddle onSolved={handleRiddleSolved} onSkip={handleRiddleSkip} />
+          </motion.div>
+        )}
       </AnimatePresence>
     </div>
   );

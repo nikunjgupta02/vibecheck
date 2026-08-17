@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { profile } from "../data/content";
+import { profile, creator } from "../data/content";
 import { bigCelebration } from "../lib/confetti";
+import { getVibe } from "../lib/vibeMatcher";
+import { formatCertificate } from "../lib/compatibility";
 
 export default function FinalApproved({ name, score, date, time, food }) {
   useEffect(() => {
@@ -16,6 +18,9 @@ export default function FinalApproved({ name, score, date, time, food }) {
       })
     : "";
 
+  const vibe = getVibe({ score });
+  const cert = formatCertificate({ personA: name, personB: profile.name, score });
+
   return (
     <div className="flex flex-col items-center text-center gap-5">
       <motion.div
@@ -26,6 +31,7 @@ export default function FinalApproved({ name, score, date, time, food }) {
       >
         ✅
       </motion.div>
+
       <div>
         <h2 className="font-[var(--font-display)] text-2xl font-semibold text-neutral-900">
           Application approved!
@@ -40,6 +46,7 @@ export default function FinalApproved({ name, score, date, time, food }) {
           Date Confirmation
         </p>
         <Row label="Match score" value={`${score}%`} />
+        <Row label="Vibe" value={`${vibe.emoji} ${vibe.label}`} />
         <Row label="With" value={profile.name} />
         {prettyDate && <Row label="When" value={`${prettyDate}, ${time}`} />}
         {food && <Row label="Eating" value={food} />}
@@ -57,8 +64,17 @@ export default function FinalApproved({ name, score, date, time, food }) {
         )}
       </div>
 
+      <motion.div
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center text-sm text-neutral-400"
+      >
+        <div>{creator.oneLiner}</div>
+        <div className="mt-1 italic text-xs text-neutral-300">{creator.spotlight}</div>
+      </motion.div>
+
       <p className="text-xs text-neutral-400">
-        Screenshot this and send it back. Yes, that's the whole plan.
+        {cert.text} Screenshot this and send it back. Yes, that's the whole plan.
       </p>
     </div>
   );

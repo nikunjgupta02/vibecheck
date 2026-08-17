@@ -11,6 +11,7 @@ import DateSchedule from "./components/DateSchedule";
 import FoodVibe from "./components/FoodVibe";
 import FinalApproved from "./components/FinalApproved";
 import { loadingLines, applicationReviewLines } from "./data/content";
+import { computeMatchScore } from "./lib/compatibility";
 
 const STAGES = [
   "intro",
@@ -26,14 +27,6 @@ const STAGES = [
   "approved",
 ];
 
-// Turns raw quiz/bio-card signals into a fun, always-high match score.
-function computeScore({ likes = 0, quizScore = 0 }) {
-  const maxQuizScore = 15; // 5 questions x max 3 pts
-  const quizPct = Math.min(1, quizScore / maxQuizScore);
-  const raw = 82 + Math.round(quizPct * 13) + Math.min(4, likes);
-  return Math.min(99, raw);
-}
-
 export default function App() {
   const [stageIndex, setStageIndex] = useState(0);
   const [answers, setAnswers] = useState({
@@ -43,6 +36,7 @@ export default function App() {
     date: "",
     time: "",
     food: "",
+    riddleBonus: 0,
   });
 
   const stage = STAGES[stageIndex];
@@ -52,7 +46,11 @@ export default function App() {
     setStageIndex((i) => Math.min(i + 1, STAGES.length - 1));
   }
 
-  const score = computeScore(answers);
+  const score = computeMatchScore({
+    likes: answers.likes,
+    quizScore: answers.quizScore,
+    riddleBonus: answers.riddleBonus || 0,
+  });
 
   return (
     <Shell stageKey={stage}>
@@ -65,7 +63,7 @@ export default function App() {
       )}
 
       {stage === "quiz" && (
-        <Quiz onNext={({ quizScore }) => goNext({ quizScore })} />
+        <Quiz onNext={({ quizScore, riddleBonus = 0 }) => goNext({ quizScore, riddleBonus })} />
       )}
 
       {stage === "compatLoading" && (
