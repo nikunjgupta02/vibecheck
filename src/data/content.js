@@ -27,13 +27,48 @@ export const creator = {
 // Swipeable bio cards — keep these short and punchy, one fact per card.
 // "tag" controls the little pill shown in the corner of the card.
 export const bioCards = [
-  { tag: "job", emoji: "💻", title: "What I do", text: "Engineer by degree, professional vibe-curator by nature. I can talk to anyone — getting picked by me is the hard part 😏" },
-  { tag: "music", emoji: "🎧", title: "Music taste", text: "The Weeknd, techno, full-blown party EDM, and unapologetic Bollywood love songs — sometimes in the same hour." },
-  { tag: "hobby", emoji: "🏋️", title: "Weekends", text: "Gym, drinks, out with friends — but also very good at doing absolutely nothing on a couch with a good movie." },
-  { tag: "social skill", emoji: "🎲", title: "My superpower", text: "I meet the poorest like the poorest and the richest like the richest — same energy either way. I don't change, the room jus[...]
-  { tag: "green flag", emoji: "🟢", title: "Green flag", text: "Down to earth with literally everyone. Where you're from or what you have doesn't change how I treat you." },
-  { tag: "red flag", emoji: "🚩", title: "Red flag (self-aware)", text: "Genuinely uncomfortable in big crowds. Will be quietly plotting the exit strategy within 10 minutes of any party." },
-  { tag: "hot take", emoji: "🔥", title: "Hot take", text: "Your sense of humor decides how funny — and how smart — I seem. Bring jokes, I'll bring better ones." },
+  {
+    tag: "job",
+    emoji: "💻",
+    title: "What I do",
+    text: "Engineer by degree, professional vibe-curator by nature. I can talk to anyone — getting picked by me is the hard part 😏",
+  },
+  {
+    tag: "music",
+    emoji: "🎧",
+    title: "Music taste",
+    text: "The Weeknd, techno, full-blown party EDM, and unapologetic Bollywood love songs — sometimes in the same hour.",
+  },
+  {
+    tag: "hobby",
+    emoji: "🏋️",
+    title: "Weekends",
+    text: "Gym, drinks, out with friends — but also very good at doing absolutely nothing on a couch with a good movie.",
+  },
+  {
+    tag: "social skill",
+    emoji: "🎲",
+    title: "My superpower",
+    text: "I meet the poorest like the poorest and the richest like the richest — same energy either way. I don't change; the room just adjusts.",
+  },
+  {
+    tag: "green flag",
+    emoji: "🟢",
+    title: "Green flag",
+    text: "Down to earth with literally everyone. Where you're from or what you have doesn't change how I treat you.",
+  },
+  {
+    tag: "red flag",
+    emoji: "🚩",
+    title: "Red flag (self-aware)",
+    text: "Genuinely uncomfortable in big crowds. Will be quietly plotting the exit strategy within 10 minutes of any party.",
+  },
+  {
+    tag: "hot take",
+    emoji: "🔥",
+    title: "Hot take",
+    text: "Your sense of humor decides how funny — and how smart — I seem. Bring jokes, I'll bring better ones.",
+  },
 ];
 
 // Compatibility quiz — "value" doesn't need to mean anything, it's just
