@@ -16,13 +16,21 @@ export const profile = {
   },
 };
 
+// Creator spotlight and microcopy tones. Keep the playful/intelligent voice.
+export const creator = {
+  signature: "Nikunj",
+  oneLiner: "Part coder, part vibe-engineer — handcrafted with a side of wit.",
+  // small easter message shown in FinalApproved
+  spotlight: "Built by Nikunj — if you like this, blame my playlist.",
+};
+
 // Swipeable bio cards — keep these short and punchy, one fact per card.
 // "tag" controls the little pill shown in the corner of the card.
 export const bioCards = [
   { tag: "job", emoji: "💻", title: "What I do", text: "Engineer by degree, professional vibe-curator by nature. I can talk to anyone — getting picked by me is the hard part 😏" },
   { tag: "music", emoji: "🎧", title: "Music taste", text: "The Weeknd, techno, full-blown party EDM, and unapologetic Bollywood love songs — sometimes in the same hour." },
   { tag: "hobby", emoji: "🏋️", title: "Weekends", text: "Gym, drinks, out with friends — but also very good at doing absolutely nothing on a couch with a good movie." },
-  { tag: "social skill", emoji: "🎲", title: "My superpower", text: "I meet the poorest like the poorest and the richest like the richest — same energy either way. I don't change, the room just does." },
+  { tag: "social skill", emoji: "🎲", title: "My superpower", text: "I meet the poorest like the poorest and the richest like the richest — same energy either way. I don't change, the room jus[...]
   { tag: "green flag", emoji: "🟢", title: "Green flag", text: "Down to earth with literally everyone. Where you're from or what you have doesn't change how I treat you." },
   { tag: "red flag", emoji: "🚩", title: "Red flag (self-aware)", text: "Genuinely uncomfortable in big crowds. Will be quietly plotting the exit strategy within 10 minutes of any party." },
   { tag: "hot take", emoji: "🔥", title: "Hot take", text: "Your sense of humor decides how funny — and how smart — I seem. Bring jokes, I'll bring better ones." },
@@ -87,6 +95,15 @@ export const foodOptions = [
   { emoji: "🌮", label: "Tacos" },
   { emoji: "🍜", label: "Ramen" },
 ];
+
+// A small intellectual interlude — a riddle that breaks the flow pleasantly.
+export const riddle = {
+  question: "I speak without a mouth and hear without ears. What am I?",
+  answer: "echo",
+  hint: "It repeats what you say...",
+  successBonus: 2, // extra points added to quiz score when solved
+  successLine: "Smart cookie! +2 bonus points and a confetti bow.",
+};
 
 // Copy for the various loading / review screens — edit for your own humor.
 export const loadingLines = [
